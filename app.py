@@ -6,6 +6,12 @@ import seaborn as sns
 import plotly.express as px
 import streamlit_theme as stt
 
+    page_title="Wine Dataset Dashboard",
+    page_icon="🍷",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
 # Apply a predefined theme
 stt.set_theme({'primary': '#1b3388'})
 
@@ -26,14 +32,10 @@ selected_target = st.sidebar.selectbox('Select a target', wine.target_names)
 filtered_data = data[data['target'] == selected_target][[selected_feature, 'target']]
 
 # Plotting
-fig = px.scatter(filtered_data, x=selected_feature, y='target', color='target', width=800, height=500)
+fig = px.scatter(data, x=selected_feature, y='target', color='target', width=800, height=500,
+                 title=f'{selected_feature} vs Target')
 fig.update_traces(marker=dict(size=8))
-fig.update_layout(
-    xaxis_title=selected_feature,
-    yaxis_title='Target',
-    title=f'{selected_feature} vs Target',
-    title_x=0.5,
-)
+fig.update_layout(xaxis_title=selected_feature, yaxis_title='Target')
 st.plotly_chart(fig)
 
 # Show the dataset
@@ -47,5 +49,5 @@ st.write(wine.DESCR.split('\n\n')[1])
 
 # Show the description of the selected target
 st.subheader('Description of Selected Target')
-st.write(wine.target_names[selected_target])
+st.write(wine.target_names)
 st.write(wine.DESCR.split('\n\n')[2])
