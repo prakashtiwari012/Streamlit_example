@@ -6,6 +6,8 @@ import seaborn as sns
 import plotly.express as px
 import streamlit_theme as stt
 
+# Set page configuration
+st.set_page_config(
     page_title="Wine Dataset Dashboard",
     page_icon="🍷",
     layout="wide",
