@@ -9,13 +9,13 @@ import streamlit_theme as stt
 # Set page configuration
 st.set_page_config(
     page_title="Wine Dataset Dashboard",
-    page_icon="🍷",
+    page_icon="⚠️",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
 # Apply a predefined theme
-stt.set_theme({'primary': '#1b3388'})
+#stt.set_theme({'primary': '#701b88'})
 
 # Load the Wine dataset
 wine = datasets.load_wine()
