@@ -18,6 +18,7 @@ with open('auth_config.yaml') as file:
 st.set_page_config(
     page_title="Wine Dataset Dashboard",
     page_icon="🍷",
+    #page_icon="🚩",
     layout="wide",
     initial_sidebar_state="expanded",
 )
