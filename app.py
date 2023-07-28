@@ -9,10 +9,33 @@ import streamlit_authenticator as stauth
 import streamlit as st
 import yaml
 from yaml.loader import SafeLoader
+from PIL import Image
+
+
 with open('auth_config.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
 #hashed_passwords = stauth.Hasher(['abc', 'def']).generate()
+
+
+@st.cache(ttl=300)
+def load_image(image_name: str) -> Image:
+    """Displays an image.
+
+    Parameters
+    ----------
+    image_name : str
+        Local path of the image.
+
+    Returns
+    -------
+    Image
+        Image to be displayed.
+    """
+    return Image.open(image_name)
+
+
+
 
 # Set page configuration
 st.set_page_config(
@@ -31,6 +54,7 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
+
 name, authentication_status, username = authenticator.login('Login', 'main')
 
 if authentication_status:
@@ -48,7 +72,8 @@ if authentication_status:
     # Set dashboard title
     st.title('Wine Dataset Dashboard')
 
-    # Sidebar selection
+    st.sidebar.image(load_image("capture.png"), use_column_width=True)
+
     st.sidebar.title('Explore Wine Dataset')
     selected_feature = st.sidebar.selectbox('Select a feature', wine.feature_names)
     selected_target = st.sidebar.selectbox('Select a target', wine.target_names)
