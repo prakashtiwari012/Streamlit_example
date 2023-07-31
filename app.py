@@ -17,6 +17,23 @@ with open('auth_config.yaml') as file:
 
 #hashed_passwords = stauth.Hasher(['abc', 'def']).generate()
 
+import streamlit as st
+import networkx as nx
+import matplotlib.pyplot as plt
+
+def create_network_graph():
+    # Create a simple example graph
+    G = nx.Graph()
+    G.add_edges_from([(1, 2), (1, 3), (2, 3), (3, 4), (4, 5), (5, 1)])
+
+    # Draw the graph using matplotlib
+    pos = nx.spring_layout(G, seed=42)  # For consistent layout
+    nx.draw(G, pos, with_labels=True, node_color='skyblue', node_size=1200, font_size=10, font_weight='bold', edge_color='gray')
+
+    # Show the graph
+    plt.title("Sample Network Graph")
+    plt.tight_layout()
+    st.pyplot()
 
 @st.cache(ttl=300)
 def load_image(image_name: str) -> Image:
