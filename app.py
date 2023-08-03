@@ -61,6 +61,19 @@ def render_svg(svg):
     html = r'<img src="data:image/svg+xml;base64,%s"/>' % b64
     st.write(html, unsafe_allow_html=True)
 
+    # Displaying SVG icon using HTML
+    st.markdown("""
+    <div style="display: inline-block;">
+        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+             width="24.000000pt" height="24.000000pt" viewBox="0 0 24.000000 24.000000"
+             preserveAspectRatio="xMidYMid meet">
+            <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"
+               fill="#000000" stroke="none">
+                <!-- Your SVG icon path data goes here -->
+            </g>
+        </svg>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Set page configuration
 st.set_page_config(
